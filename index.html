@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sort Without Articles</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -26,6 +25,33 @@
             'Anywhere But Here',
             'An Old Dog'
         ];
+
+        function strip(bandName) {
+            return bandName.replace(/^(a |the |an )/i, '').trim();
+        }
+    
+        // using arrow function
+        const sortedBands = bands.sort((a, b) => strip(a) > strip(b) ? 1 : -1);
+
+        // const sortedBands = bands.sort(function (a, b) {
+            // using ternary operator
+            // return strip(a) > strip(b) ? 1 : -1;
+
+            // using if statement
+            // if (strip(a) > strip(b)) {
+            //     return 1;
+            // } else {
+            //     return -1;
+            // }
+        // });
+
+        document.querySelector('#bands').innerHTML = 
+            sortedBands
+                .map(band => `<li>${band}</li>`)
+                .join('');
+
+        console.log(sortedBands);
+
     </script>
 </body>
 </html>
